@@ -1,0 +1,27 @@
+<script>
+  // Simple cart array demo
+  const cart = [];
+
+  // Add to Cart buttons
+  document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', () => {
+      const product = button.dataset.product;
+      const price = button.dataset.price;
+      cart.push({ product, price });
+      alert(`Added "${product}" to cart!`);
+      console.log('Cart:', cart);
+    });
+  });
+
+  // Shop Now buttons
+  document.querySelectorAll('.shop-now').forEach(button => {
+    button.addEventListener('click', () => {
+      const product = button.dataset.product;
+      // Redirect to product details page or external shop URL
+      // For demo, just alert
+      alert(`Redirecting to shop page for "${product}"`);
+      // Example redirect (uncomment and edit URL accordingly)
+      // window.location.href = `product-details.html?product=${encodeURIComponent(product)}`;
+    });
+  });
+</script>

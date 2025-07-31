@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ECE Attendance - Shree Venkateshwara Hi-Tech Engineering College</title>
+  <style>
+    /* Fonts and Reset */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px 15px;
+      color: #fff;
+    }
+
+    .container {
+      background: rgba(0,0,0,0.6);
+      border-radius: 12px;
+      width: 800px;
+      padding: 30px 40px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: 700;
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: #ffcb05;
+      text-shadow: 0 0 5px #ffcb05aa;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    label[for="class_date"] {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #ffe066;
+    }
+
+    input[type="date"] {
+      margin-left: 15px;
+      padding: 7px 12px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 25px;
+      border-collapse: collapse;
+      background: #121212;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 15px #000;
+    }
+
+    thead {
+      background: #ffcb05;
+      color: #000;
+    }
+
+    thead th {
+      padding: 12px 18px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #444;
+      transition: background-color 0.3s ease;
+    }
+
+    tbody tr:hover {
+      background: #333;
+    }
+
+    tbody td {
+      padding: 14px 18px;
+      text-align: center;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    tbody td:first-child, tbody td:nth-child(2) {
+      text-align: left;
+      padding-left: 25px;
+      color: #ffd633;
+    }
+
+    /* Radio Buttons Styled */
+    input[type="radio"] {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border: 2.5px solid #ffcb05;
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+      vertical-align: middle;
+    }
+    input[type="radio"]:checked::before {
+      content: "";
+      position: absolute;
+      top: 5px; left: 5px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #ffcb05;
+      transition: background 0.3s ease;
+    }
+
+    /* Submit Button */
+    button {
+      margin-top: 25px;
+      display: block;
+      width: 100%;
+      padding: 15px 0;
+      background: #ffcb05;
+      border: none;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #000;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ffcb05aa;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background: #e6b803;
+      box-shadow: 0 0 15px #e6b803cc;
+    }
+
+    /* Responsive */
+    @media (max-width: 850px) {
+      .container {
+        width: 100%;
+      }
+      tbody td:first-child, tbody td:nth-child(2) {
+        padding-left: 12px;
+        font-size: 0.9rem;
+      }
+      button {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ECE Attendance Sheet</h1>
+    <form action="save_attendance.php" method="POST">
+      <label for="class_date">Class Date:</label>
+      <input type="date" id="class_date" name="class_date" required value="<?php echo date('Y-m-d'); ?>" />
+
+      <table>
+        <thead>
+          <tr>
+            <th>Roll No</th>
+            <th>Student Name</th>
+            <th>Present</th>
+            <th>Absent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Example students: Replace with your actual list -->
+          <tr>
+            <td>ECE101</td>
+            <td>Ajay Kumar</td>
+            <td><input type="radio" name="status[0]" value="Present" required></td>
+            <td><input type="radio" name="status[0]" value="Absent"></td>
+            <input type="hidden" name="student_id[0]" value="1" />
+          </tr>
+          <tr>
+            <td>ECE102</td>
+            <td>Priya Sharma</td>
+            <td><input type="radio" name="status[1]" value="Present" required></td>
+            <td><input type="radio" name="status[1]" value="Absent"></td>
+            <input type="hidden" name="student_id[1]" value="2" />
+          </tr>
+          <tr>
+            <td>ECE103</td>
+            <td>Rohit Singh</td>
+            <td><input type="radio" name="status[2]" value="Present" required></td>
+            <td><input type="radio" name="status[2]" value="Absent"></td>
+            <input type="hidden" name="student_id[2]" value="3" />
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+
+      <button type="submit">Save Attendance</button>
+    </form>
+  </div>
+</body>
+</html>
